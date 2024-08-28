@@ -1,0 +1,7 @@
+module.exports.items = ["item1", "item2"]; // en måte å eksporter noe på. 
+
+const person = {
+    name: "bob",
+};
+
+module.exports.singlePerson = person; // en annen måte å eksportere noe på. 
