@@ -1,21 +1,42 @@
-//npm - global command, comes with node
-//npm --version
+import { readFile, writeFile } from "fs";
+import util from "util";
+//turning readFile into a promise:
+const readFilePromise = util.promisify(readFile);
+const writeFilePromise = util.promisify(writeFile);
 
-// local dependency - use it only in this particaular project. 
-//npm i <packageName>
 
-//global dependency - use it in any object
-//npm install -g <packageName>
-//sudo install -g <packageName> (mac)
+const start = async() => {
+    try {
+        const first = await readFilePromise("./content/first.txt", "utf8");
+        const second = await readFilePromise("./content/second.txt", "utf8");
+        await writeFilePromise("./content/result-mind-grenade.txt", `\nTHIS IS AWESOME : ${first} ${second}`, {flag: "a"})
+        console.log(first, second);
+    } catch (error) {
+            console.log(error);
+    }
+}
 
-//package.json - manifest file (stores omportant info about project/package
+start();
 
-//manual approach: create package.json in the root, create properties etc. 
-//npm init (step by step, press enter to skip)
-//npm init -y (skip questions - everythin default. )
 
-const _ = require("lodash");
+/*
+const getText = (path) => {
+    return new Promise((resolve, reject)=>{
+        readFile(path, "utf8", (err, data) => {
+            if(err){
+                console.log(err);
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    })
+};
+*/
 
-const items = [1, [2, [3, [4]]]];
-const newItems = _.flattenDeep(items);
-console.log(newItems);
+
+
+
+//getText("./content/first.txt")
+//    .then(result => console.log(result))
+//    .catch((err) => console.log(err));

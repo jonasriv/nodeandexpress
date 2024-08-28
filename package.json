@@ -1,12 +1,13 @@
 {
   "name": "nodeandexpress",
   "version": "1.0.0",
+  "type": "module",
   "main": "01-intro.js",
   "scripts": {
     "start": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jonas Risløw Iversen",
   "license": "ISC",
   "description": "",
   "dependencies": {
